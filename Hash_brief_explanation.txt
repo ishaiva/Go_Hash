@@ -1,0 +1,26 @@
+The "Hash.py" script provides functions for calculating the hash of a file using various hash algorithms and displaying information about these algorithms. Let's go through each function's purpose and functionality:
+
+    calculate_hash(file_path, hash_algorithm): This function calculates the hash of a file using the specified hash algorithm.
+        file_path: The path to the file whose hash needs to be calculated.
+        hash_algorithm: The selected hash algorithm to use.
+
+    The function opens the file in binary read mode ('rb') and reads its content into the variable data. Then, based on the selected hash_algorithm, it performs the following actions:
+        For SHAKE algorithms, it uses hashlib.new() to calculate the hash with a 512-bit output size.
+        For 'bcrypt', it generates a salt using bcrypt.gensalt() and then hashes the data using bcrypt.hashpw().
+        For 'argon2', it creates an argon2.PasswordHasher() object and hashes the data using hash_engine.hash(data).
+        For other hash algorithms, it uses hashlib.new() with the specified algorithm name and updates it with the data, then returns the resulting hash in hexadecimal format.
+
+    get_hash_info(hash_algorithm): This function returns information about the given hash algorithm.
+        hash_algorithm: The name of the hash algorithm for which information is requested.
+
+    The function contains a dictionary called hash_info, which holds information about various hash algorithms. It uses the hash_algorithm parameter to look up the corresponding information in the hash_info dictionary and returns it.
+
+    main(): This function serves as the entry point of the script and handles user interactions.
+
+    The main() function starts by displaying a welcome message with a formatted text art and prompts the user to enter the path to the file whose hash they want to calculate. If the user enters 'q', the program exits.
+
+    It then displays a list of available hash algorithms and prompts the user to select one or more algorithms by entering their corresponding numbers (separated by commas). If the user enters 'q', the program exits.
+
+    After obtaining the user's selection, the function calculates the hash for each selected algorithm using the calculate_hash() function. It also fetches information about each algorithm using get_hash_info() and displays the results, including the hash values, algorithm descriptions, usage, applications, and whether the algorithms are used in databases.
+
+In summary, the "Hash.py" script provides a simple command-line interface to calculate the hash of a file using various hash algorithms and provides information about the selected algorithms. Users can interactively choose the file and algorithms they want to use, and the script will display the calculated hashes along with relevant information.
